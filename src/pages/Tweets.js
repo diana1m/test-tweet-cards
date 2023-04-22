@@ -1,5 +1,10 @@
+import { CardList } from "../componets/CardList/CardList";
+
 export default function Tweets() {
     return(
-        <h2>Tweets page</h2>
+        <div>
+            <CardList/>
+        </div>
+        
     )
 }

@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import { Navigation } from '../Navigation/Navigation';
 
 import { Header, Container } from './Layout.styled';
+import { Loader } from '../Loader/Loader';
 
 export const Layout = () => {
   return (
@@ -13,10 +14,8 @@ export const Layout = () => {
             <Navigation />
         </Container>
       </Header>
-      <Suspense fallback={<p>Loading...</p>}>
-        <Container>
-            <Outlet />
-        </Container>
+      <Suspense fallback={<Loader/>}>
+          <Outlet />
       </Suspense>
     </div>
   );
