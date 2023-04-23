@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 export const NavLinkStyled = styled(NavLink)`
     text-decoration: none;
     color: #FBFCFB;
-    font-size: 36px;
+    font-size: 32px;
     font-weight: 700;
     padding: 6px 20px;
     border-radius: 10px;
@@ -28,6 +28,6 @@ export const NavLinkStyled = styled(NavLink)`
 export const NavigationWrapper = styled.nav`
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 30px;
 `
 
