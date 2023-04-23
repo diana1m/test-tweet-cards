@@ -1,35 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { editTweet, fetchTweets } from "./operations";
 
-// const handlePending = state => {
-//   state.isLoading = true;
-// };
-
-// const handleRejected = (state, action) => {
-//   state.isLoading = false;
-//   state.error = action.payload;
-// };
-
 const tweetsSlice = createSlice({
   name: "tweets",
   initialState: {
     users: [],
     page: 1,
+    isLoading: false,
   },
   reducers: {
-    changePage(state) {
-      state.page +=1;
+    changePage(state, action) {
+      state.page = action.payload;
     },
   },
   extraReducers: builder => {
     builder
+      .addCase(fetchTweets.pending, (state) => {
+        state.isLoading = true;
+      })
       .addCase(fetchTweets.fulfilled, (state, action) => {
         state.page === 1 
         ? state.users = action.payload 
         : state.users = [...state.users, ...action.payload]
-        
+        state.isLoading = false;
+    })
+    .addCase(editTweet.pending, (state) => {
+      state.isLoading = true;
     })
     .addCase(editTweet.fulfilled, (state, action) => {
+      state.isLoading = false;
       state.users = state.users.map(user => {
         if (user.id === action.payload.id) {
           return {
@@ -42,15 +41,6 @@ const tweetsSlice = createSlice({
         return user;
       });
     });
-    //   })
-    //   .addCase(fetchTweets.rejected, (state) => handleRejected(state))
-    //   .addCase(addContact.pending, (state) => handlePending(state))
-    //   .addCase(addContact.fulfilled, (state, action) => {
-    //     state.items = [...state.items, action.payload];
-    //     state.isLoading = false;
-    //     state.error = null;
-    //   })
-
     }
 });
 
