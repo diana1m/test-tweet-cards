@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/266.a706124f.chunk.js","mappings":"kLAAe,SAASA,IACpB,OACIC,EAAAA,EAAAA,KAAA,MAAAC,SAAI,aAEZ,C","sources":["pages/Home.js"],"sourcesContent":["export default function Home() {\n    return(\n        <h1>Home page</h1>\n    )\n}"],"names":["Home","_jsx","children"],"sourceRoot":""}
