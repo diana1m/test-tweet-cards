@@ -5,16 +5,16 @@ import { changePage } from '../../redux/slice';
 export const Navigation = () => {
   const dispatch = useDispatch();
 
-  const goHome= () => {
+  const goTweets= () => {
     dispatch(changePage(1))
   }
 
   return (
     <NavigationWrapper>
-      <NavLinkStyled to="/" onClick={goHome}>
+      <NavLinkStyled to="/" >
         Home
       </NavLinkStyled>
-      <NavLinkStyled to="/tweets">
+      <NavLinkStyled to="/tweets" onClick={goTweets}>
         Tweets
       </NavLinkStyled>
     </NavigationWrapper>
