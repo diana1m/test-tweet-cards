@@ -3,23 +3,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectPage, selectUsers } from "../../redux/selectors";
 import { CardItem } from "../CardItem/CardItem";
 import { ListTweets } from "./CardList.styled";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { fetchTweets } from "../../redux/operations";
 import { changePage } from "../../redux/slice";
 
 export const CardList = () => {
-    const [page, setPage] = useState(1);
     const users = useSelector(selectUsers);
+    const pages = useSelector(selectPage);
     const dispatch = useDispatch();
 
     const handleLoadMore = () => {
-        setPage((prevState) => prevState + 1); 
+        dispatch(changePage())
       };
     
     useEffect(() => {
-        if(page === 1) return;
-        dispatch(fetchTweets(page));
-    }, [dispatch, page]);
+        dispatch(fetchTweets(pages));
+    }, [dispatch, pages]);
 
     return(
         <>
@@ -29,7 +28,7 @@ export const CardList = () => {
         <button
           type="button"
           onClick={handleLoadMore}
-          disabled={page === 4}
+          disabled={pages === 4}
         >
           Load more
         </button>

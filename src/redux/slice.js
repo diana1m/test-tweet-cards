@@ -16,16 +16,18 @@ const tweetsSlice = createSlice({
     users: [],
     page: 1,
   },
-  reducer: {
-    changePage(state, action) {
-      console.log(state.page)
-      state.page = action.payload;
+  reducers: {
+    changePage(state) {
+      state.page +=1;
     },
   },
   extraReducers: builder => {
     builder
       .addCase(fetchTweets.fulfilled, (state, action) => {
-        state.users = [...state.users, ...action.payload]
+        state.page === 1 
+        ? state.users = action.payload 
+        : state.users = [...state.users, ...action.payload]
+        
     })
     .addCase(editTweet.fulfilled, (state, action) => {
       state.users = state.users.map(user => {
