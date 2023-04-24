@@ -41,7 +41,7 @@ export const CardItem = ({id, user}) => {
                 />
             
             <Text>{user.tweets} Tweets</Text>
-            <Text>{user.followers} followers
+            <Text>{new Intl.NumberFormat('en').format(user.followers)} followers
                 
             </Text>
             <Btn type="button" isFollow={user.isFollowed} onClick={handleClick}>{user.isFollowed ? "Following" : "Follow"}</Btn>
